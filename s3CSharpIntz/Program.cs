@@ -105,17 +105,7 @@ namespace s3CSharpIntz
 
 		public static Boolean sendToS3(string filePath, string bucketName, string keyName)
 		{
-			var aws = new AmazonS3Client();
-
-			var options = new CredentialProfileOptions
-			{
-				AccessKey = "AKIAI3YKWY3EHHEOKS6Q",
-				SecretKey = "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"
-			};
-			var profile = new CredentialProfile("shared_profile", options);
-			profile.Region = RegionEndpoint.USWest2;
-			var sharedFile = new SharedCredentialsFile();
-			sharedFile.RegisterProfile(profile);
+			var aws = new AmazonS3Client("Access_token_here", "Secert_here", RegionEndpoint.USWest2);
 			try
 			{
 				var request = new PutObjectRequest()
@@ -139,7 +129,7 @@ namespace s3CSharpIntz
 					throw new Exception("Error occured: " + ex.Message);	
 				}
 			}
-			return false;
+			return true;
 		}
 	}
 }
